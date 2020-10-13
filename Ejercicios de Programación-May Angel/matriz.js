@@ -20,6 +20,5 @@ var tblBody = document.createElement("tbody");
     }
     tbl.appendChild(tblBody);
     tbl.setAttribute("border", "6" );
-    fila.setAttribute("padding", "1000" )
     
 }
