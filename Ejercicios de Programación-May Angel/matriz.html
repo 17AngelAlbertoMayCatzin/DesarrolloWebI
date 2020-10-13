@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="Viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Angel alberto May Catzin" content="Matrices">
+    <meta name="keys" content="matriz">
+    <title>Matriz</title>
+    <style>
+        body{
+            background-color: blanchedalmond;
+            margin-left: 800px;
+            margin-right: 800px;
+        }
+        select{
+            background-color: burlywood;
+            font-weight: bold;
+        }
+        h1{
+           font-weight: bold; 
+           font-family: 'Times New Roman', Times, serif;
+           font-size: 40px;
+        }
+        h2{
+            font-size: 30px;
+        }
+        .Limpiar{
+            background-color: lightblue;
+        }
+    </style>
+    <script src="matriz.js"></script>
+</head>
+<body>
+    <h1>Matriz de identidad</h1>
+    <h2>Seleccione el tamano de la matriz</h2>
+    
+    <select id= "matriz" name="select" onchange="crearTabla()">
+        <option value="">Seleccione</option> 
+        <option value="2">2X2</option> 
+        <option value="3">3X3</option>
+        <option value="4">4X4</option>
+        <option value="5">5X5</option>
+        <option value="6">6X6</option>
+        <option value="7">7X7</option>
+        <option value="8">8X8</option>
+        <option value="9">9X9</option>
+        <option value="10">10X10</option>
+      </select>
+        <table id="tabla"></table>
+        <button class="Limpiar" onClick="window.location.reload();">Reiniciar</button>
+</body>
+</html> 
