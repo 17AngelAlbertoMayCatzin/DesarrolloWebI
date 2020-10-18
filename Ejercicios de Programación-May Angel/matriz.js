@@ -1,7 +1,7 @@
 function crearTabla(){
 //Obtener el valor del select seleccionado
 var valorSelect = document.getElementById("matriz").value;
-
+valorSelect = valorSelect-1;
 //Creamos la matriz bidimencional
 var A=new Array(valorSelect); 
 for (var i=0;i<=valorSelect;i++) { 
