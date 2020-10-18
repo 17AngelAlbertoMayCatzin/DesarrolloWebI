@@ -1,29 +1,42 @@
 function crearTabla(){
+//Obtener el valor del select seleccionado
 var valorSelect = document.getElementById("matriz").value;
-var columna=new Array(valorSelect);
-var filas=new Array(valorSelect);
-var tbl = document.getElementById("tabla");
-var tblBody = document.createElement("tbody");
-    for (var i = 0; i < columna; i++) {
-       var fila = document.createElement("tr");
-       fila.setAttribute('style','background-color: aqua;')
-       for (var j = 0; j < filas; j++) {
-          var celda = document.createElement("td");
-          celda.setAttribute('style','background-color: red;')
-          if(i==j){
-              textoCelda = document.createTextNode(1);
-              fila.appendChild(textoCelda);
-              
-          } else{
-              textoCelda1 = document.createTextNode(0);
-              fila.appendChild(textoCelda1);
-              
-          }
-       }
-       
-        tblBody.appendChild(fila);
+
+//Creamos la matriz bidimencional
+var A=new Array(valorSelect); 
+for (var i=0;i<=valorSelect;i++) { 
+  A[i] = new Array(valorSelect);  
+}  
+//Alimentamos la matriz
+for(i=0;i<=valorSelect;i++){  
+    for(j=0;j<=valorSelect;j++){   
+      if (i==j){
+        A[i][j]=1; 
+      }else{
+        A[i][j]=0; 
+      }
+    }  
+  } 
+//Creamos la tabla
+function crearTabla(tablaData) {
+    var tbl = document.getElementById("tabla");
+      var cuerpo = document.createElement('tbody');
+      tablaData.forEach(function(rowData) {
+        var fila = document.createElement('tr');
+        rowData.forEach(function(cellData) {
+          var cell = document.createElement('td');
+          cell.setAttribute('style','text-align :center;');
+          cell.setAttribute('style','background-color: aqua;')
+          cell.appendChild(document.createTextNode(cellData));
+          fila.appendChild(cell);
+        });
+        cuerpo.appendChild(fila);
+      });
+      tbl.appendChild(cuerpo);
+      document.body.appendChild(tbl);
     }
-    tbl.appendChild(tblBody);
-    tbl.setAttribute("border", "6" );
+    crearTabla(A);
+
+
     
 }
