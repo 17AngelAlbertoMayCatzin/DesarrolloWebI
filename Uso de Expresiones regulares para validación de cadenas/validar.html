@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<htm lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="Viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Angel Alberto May Catzin">
+        <meta name="keys" content="expreRegular">
+        <title>ExpRegular</title>
+        <script src="validar.js"></script>
+        <style>
+         h1{
+            font-weight: 70px;
+            font-size: 70px;
+            text-transform: uppercase;
+            border-top: 15px solid;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: tomato;
+        }
+        body{
+            background-color:cornsilk;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 200;
+            align-self: center;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Expresiones regulares</h1>
+        <form>
+            ISBN:
+        <input type="text" id="isbn" size="20" maxlength = " 30 ">
+        <br>
+        <section class="sec0">
+            <p id="reglasIB">El ISBN se compone de 5 elementos separados entre sí por un espacio o un guion. 
+                Tres de los cinco elementos pueden variar en longitud:
+                <br>
+                <img src="ISBN.png" height="250px">
+                <br>
+                <a href="https://www.isbn-international.org/es/content/%C2%BFqu%C3%A9-es-un-isbn">© 2014 International ISBN Agency</a>
+                <br>
+            </p>
+        </section>
+        <br>
+            Identificador Java
+        <input type="text" id="idenJava" size="20" maxlength="30">
+        <br>
+        <section class="sec1">
+            <p id="reglasIJ">Los identificadores son los nombres que el programador asigna a variables, constantes, clases, métodos, paquetes, etc. de un programa.
+                <br>
+                <img src="IdJava.png" height="250px">
+                <br>
+            </p>
+        </section>
+        <br>
+        <input type="button" value="Validar" onclick="formDatos();">
+        </form>
+        <p id="RFC"></p>
+    </body>
+</htm>
