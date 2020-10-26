@@ -1,34 +1,48 @@
-var isbnV;
-var idJava;
-var expR1;
-var expR2;
-var expN;
-//Función para validar datos
-function formDatos(){
-    expR1 = new RegExp('97[89]-\\d{1,5}-\\d{1,7}-\\d{1,6}-\\d{1}$');
-    expR2 = new RegExp('^\\S|\D|\[a-zA-Z]+$');
+var isbnV;  //Variable que almacena el isbn ingresado por usuario
+var idJava; //Variable que almacena el identificador ingresado por usuario
+var expR1;  //Variable que almacena la expresión regular para validar el isbn
+var expR2;  //Variable que almacena la expresión regular para validar el identificador
+var valor1; //Variable
+var valor2; //Variable
+//Función para procesar el formulario
+function validarDatos(){
+    //Agregamos a la vairiable la expresión regular del isbn
+    expR1 = new RegExp('97[89]-\\d{1,5}-\\d{1,7}-\\d{1,6}-\\d{1}$'); 
+    //Agregamos a la vairiable la expresión regular del identificador
+    expR2 = new RegExp('^\\S[a-z]+$', 'i');
     //Optenemos y guardamos el valor del input en la variable isbn
      isbnV= document.getElementById("isbn").value;
-     validarIsbn();
+     //Optenemos y guardamos el valor del input en la variable idJava
      idJava= document.getElementById("idenJava").value;
-     validarIdJ();
-    //-----------------------------------------------------------------
-    function validarIsbn(){
+
+    //-------Validamos si el nombre cumple alguna de las dos condiciones (expresiones regulares)-------//
+    //-------test(isbnV) Comprueba si la expresión regular (expR1) casa con el texto (isbnV) pasado por parámetro.
         if (expR1.test(isbnV)==true){
-            alert('ISBN CORRECTO')
-
+            alert('ISBN CORRECTO') //Mandamos una alerta cuando el usuario ingrese un isbn valido
+            valor1=true;           //Asignamos true a la variable valor1, para su posterior validación
+            document.getElementById("errorIb").innerHTML = "";  //Limpiamos el contenido de la etiqueta errorIb
         } else{
-            alert('Ingrese un ISBN valido')
+            alert('ISBN inválido') //Mandamos una alerta cuando el usuario ingrese un isbn inválido
+            document.getElementById("isbn").value = ""; //Asignamos nulo al input isbn
+            //A la etiqueta errorIb se le asigna un contenido, mostrando el error y un ejemplo.
+            document.getElementById("errorIb").innerHTML='El dato introducido no es válido.'+'<br/> Introduzca uno válido.'+ '<br/> Ejemplo: 978-92-95055-02-5'
         }
-    
-    }
-    function validarIdJ(){
+    //-------test(idJava) Comprueba si la expresión regular (expR2) casa con el texto (idJava) pasado por parámetro.
         if (expR2.test(idJava)==true){
-            alert('Identificador correcto')
-
+            alert('Identificador correcto') //Mandamos una alerta cuando el usuario ingrese un identificador válido
+            valor2=true;                     //Asignamos true a la variable valor2, para su posterior validación
+            document.getElementById("errorIj").innerHTML=''     //Limpiamos el contenido de la etiqueta errorIb
         } else{
-            alert('Ingrese un Identificador valido')
+            alert('Identificador inválido') //Mandamos una alerta cuando el usuario ingrese un identificaor invalido
+            document.getElementById("idenJava").value = ""; //Asignamos nulo al input idenJava
+            //A la etiqueta errorIj se le asigna un contenido, mostrando el error y un ejemplo.
+            document.getElementById("errorIj").innerHTML='El dato introducido no es válido.'+'<br/> Introduzca uno válido.'+ '<br/> Ejemplo: myVariable, Persona, validarNumero'
         }
-    
-    }
+        //Validamos los dos valores (valor1 y valor2), si ambas se cumplen, se muestran los datos personales
+        if (valor1==true && valor2==true){
+             //Usamos la propiedad innerHTML, con lo cual asignamos contenido a la etiqueta con id mostrarDatos
+            document.getElementById("mostrarDatos").innerHTML='Los datos introducidos son válidos'+ '<br/> Desarrollo:'+ '<br/> Nombre: Angel Alberto May Catzin'+
+            '<br/> Número de control: 17390350'+ '<br/> Correo Electrónico: l17390350@chetumal.tecnm.mx' ;
+        }
+
 }
