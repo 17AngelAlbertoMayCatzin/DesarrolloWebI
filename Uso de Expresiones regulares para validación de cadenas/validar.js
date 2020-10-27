@@ -38,13 +38,14 @@ function validarDatos(){
     //-------test(idJava) Comprueba si la expresión regular (expR2) casa con el texto (idJava) pasado por parámetro.
         if (expR2.test(idJava)==true){
             alert('Identificador correcto') //Mandamos una alerta cuando el usuario ingrese un identificador válido
-            ver= palabrasReservadas.includes( idJava ) //Buscamos un elemento en un array con includes, devolvera true si esta.
+            ver= palabrasReservadas.includes( idJava ) //Buscamos el elemento (idJava) en el array con includes, devolvera true si esta.
             //Validamos si se encontro el elemento
             if(ver==true){
                 alert('Ingreso una palabra reservada de Java')  //Mandamos una alerta cuando el usuario ingrese una palabra reservada de Java
                 document.getElementById("idenJava").value = ""; //Asignamos nulo al input idenJava
                 //A la etiqueta errorIj se le asigna un contenido, mostrando el error y un ejemplo.
-                document.getElementById("errorIj").innerHTML='El dato introducido es un identificador de java.'+'<br/> Introduzca un valor válido.'+ '<br/> Ejemplo: myVariable, Persona, validarNumero'
+                document.getElementById("errorIj").innerHTML='El dato introducido es un identificador de java.'+'<br/> Introduzca un valor válido.'+ 
+                '<br/> Ejemplo: myVariable, Persona, validarNumero'
             } else{
                 valor2=true;                                        //Asignamos true a la variable valor2, para su posterior validación
                 document.getElementById("errorIj").innerHTML=''     //Limpiamos el contenido de la etiqueta errorIb
@@ -62,5 +63,4 @@ function validarDatos(){
             document.getElementById("mostrarDatos").innerHTML='Los datos introducidos son válidos'+ '<br/> Desarrollo:'+ '<br/> Nombre: Angel Alberto May Catzin'+
             '<br/> Número de control: 17390350'+ '<br/> Correo Electrónico: l17390350@chetumal.tecnm.mx' ;
         }
-
 }
