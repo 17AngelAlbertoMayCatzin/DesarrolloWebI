@@ -15,9 +15,9 @@ function validarDatos(){
     "int","short","try","char","final","interface","static","void","class","finally","long","strictfp","volatile","const","float",
     "native","super","while"]
     //Agregamos a la vairiable la expresión regular del isbn
-    expR1 = new RegExp('97[89][-\\s]+\\d{1,5}[-\\s]+\\d{1,7}[-\\s]+\\d{1,6}[-\\s]+\\d{1}$'); 
+    expR1 = new RegExp('^97[89][-\\s]+\\d{1,5}[-\\s]+\\d{1,7}[-\\s]+\\d{1,6}[-\\s]+\\d{1}$'); 
     //Agregamos a la vairiable la expresión regular del identificador
-    expR2 = new RegExp('^[_]*[A-Za-z]+[_]*[A-Za-z]+[0-9]*$', 'i');
+    expR2 = new RegExp('^[_$]*[A-Za-z]+[_]*[A-Za-z]+[0-9]*$', 'i');
     //Optenemos y guardamos el valor del input en la variable isbn
      isbnV= document.getElementById("isbn").value;
      //Optenemos y guardamos el valor del input en la variable idJava
@@ -33,7 +33,8 @@ function validarDatos(){
             alert('ISBN inválido') //Mandamos una alerta cuando el usuario ingrese un isbn inválido
             document.getElementById("isbn").value = ""; //Asignamos nulo al input isbn
             //A la etiqueta errorIb se le asigna un contenido, mostrando el error y un ejemplo.
-            document.getElementById("errorIb").innerHTML='El dato introducido no es válido.'+'<br/> Introduzca uno válido.'+ '<br/> Ejemplo: 978-92-95055-02-5'
+            document.getElementById("errorIb").innerHTML='El dato introducido no es válido.'+'<br/> Introduzca uno válido.'+ 
+            '<br/> Ejemplos de datos válidos: 978-92-95055-02-5, 978 92 95055 02 5 '
         }
     //-------test(idJava) Comprueba si la expresión regular (expR2) casa con el texto (idJava) pasado por parámetro.
         if (expR2.test(idJava)==true){
@@ -50,17 +51,19 @@ function validarDatos(){
                 valor2=true;                                        //Asignamos true a la variable valor2, para su posterior validación
                 document.getElementById("errorIj").innerHTML=''     //Limpiamos el contenido de la etiqueta errorIb
             }
-
         } else{
             alert('Identificador inválido') //Mandamos una alerta cuando el usuario ingrese un identificaor invalido
             document.getElementById("idenJava").value = ""; //Asignamos nulo al input idenJava
             //A la etiqueta errorIj se le asigna un contenido, mostrando el error y un ejemplo.
-            document.getElementById("errorIj").innerHTML='El dato introducido no es válido.'+'<br/> Introduzca uno válido.'+ '<br/> Ejemplo: myVariable, Persona, validarNumero'
+            document.getElementById("errorIj").innerHTML='El dato introducido no es válido.'+'<br/> Introduzca uno válido.'+ 
+            '<br/> Ejemplos de datos válidos: myVariable, Persona, validar_Numero'
         }
         //Validamos los dos valores (valor1 y valor2), si ambas se cumplen, se muestran los datos personales
         if (valor1==true && valor2==true){
              //Usamos la propiedad innerHTML, con lo cual asignamos contenido a la etiqueta con id mostrarDatos
             document.getElementById("mostrarDatos").innerHTML='Los datos introducidos son válidos'+ '<br/> Desarrollo:'+ '<br/> Nombre: Angel Alberto May Catzin'+
             '<br/> Número de control: 17390350'+ '<br/> Correo Electrónico: l17390350@chetumal.tecnm.mx' ;
+        } else{
+            document.getElementById("mostrarDatos").innerHTML='¡Uuuups... Los datos personales no se pueden mostrar!'+ '<br/>Debido a que los datos introducidos no son válidos';
         }
 }

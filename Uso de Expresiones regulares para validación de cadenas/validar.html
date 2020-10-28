@@ -12,17 +12,17 @@
     <body>
         <h1>Expresiones regulares</h1>
         <h2>Bienvenido</h2>
-        <h3>Ingrese un ISBN y un Identificador</h3>
+        <h3>Ingrese un ISBN y un Identificador Java</h3>
         <form>
-            ISBN:
-        <input type="text" id="isbn" size="20" maxlength = " 30 " style="background-color: rgb(5, 206, 206);">
+            <strong>ISBN</strong>
+        <input type="text" id="isbn" size="20" maxlength = "30" style="background-color: rgb(5, 206, 206);">
         <br>
-        <p id="errorIb" style="color: red;"></p>
+        <p id="errorIb" style="color: red; font-size: 20px;"></p>
         <br>
-        <section>
+        <section style="font-size: 20px;">
             <p id="reglasIB">Un ISBN es un código normalizado internacional para libros (International Standard Book Number).
                 <br>
-                El ISBN se compone de 5 elementos separados entre sí por espacio o guion. 
+                El ISBN de 13 digitos se compone de 5 elementos separados entre sí por espacio o guion. 
                 Tres de los cinco elementos pueden variar en longitud:
                 <br>
                 <img src="ISBN.png" height="250px">
@@ -32,12 +32,12 @@
             </p>
         </section>
         <br>
-            Identificador Java
+            <strong>Identificador Java</strong>
         <input type="text" id="idenJava" size="20" maxlength="30" style="background-color: rgb(5, 206, 206);">
         <br>
-        <p id="errorIj" style="color: red;"></p>
+        <p id="errorIj" style="color: red; font-size: 20px;"></p>
         <br>
-        <section>
+        <section style="font-size: 20px;">
             <p id="reglasIJ">Los identificadores son los nombres que el programador asigna a variables, constantes, clases, métodos, paquetes, etc. de un programa.
                 <br>
                 <img src="IdJava.png" height="250px">
@@ -48,9 +48,10 @@
         </section>
         <br>
         <input type="button" value="Validar" style="background: rgb(106, 199, 228); font-weight: bold;
-         border-color: darkcyan; font-family: 'Times New Roman', Times, serif;" onclick="validarDatos();">
+         border-color: darkcyan; font-family: 'Times New Roman', Times, serif; height: 40px; width: 150px; font-size:25px;"
+         onclick="validarDatos();">
         </form>
         <br>
-        <p id="mostrarDatos"></p>
+        <p id="mostrarDatos">|----Datos Personales----|</p>
     </body>
 </htm>
