@@ -15,7 +15,7 @@ function validarDatos(){
     "int","short","try","char","final","interface","static","void","class","finally","long","strictfp","volatile","const","float",
     "native","super","while"]
     //Agregamos a la vairiable la expresión regular del isbn
-    expR1 = new RegExp('^97[89][-\\s]+\\d{1,5}[-\\s]+\\d{1,7}[-\\s]+\\d{1,6}[-\\s]+\\d{1}$'); 
+    expR1 = new RegExp('(?=.{17}$)97[89][-\\s]+\\d{1,5}[-\\s]+\\d{1,7}[-\\s]+\\d{1,6}[-\\s]+\\d{1}$'); 
     //Agregamos a la vairiable la expresión regular del identificador
     expR2 = new RegExp('^[_$]*[A-Za-z]+[_]*[A-Za-z]+[0-9]*$', 'i');
     //Optenemos y guardamos el valor del input en la variable isbn
@@ -25,7 +25,7 @@ function validarDatos(){
 
     //-------Validamos si el nombre cumple alguna de las dos condiciones (expresiones regulares)-------//
     //-------test(isbnV) Comprueba si la expresión regular (expR1) casa con el texto (isbnV) pasado por parámetro.
-        if (expR1.test(isbnV)==true){
+        if (expR1.test(isbnV)==true  ){
             alert('ISBN CORRECTO') //Mandamos una alerta cuando el usuario ingrese un isbn valido
             valor1=true;           //Asignamos true a la variable valor1, para su posterior validación
             document.getElementById("errorIb").innerHTML = "";  //Limpiamos el contenido de la etiqueta errorIb
