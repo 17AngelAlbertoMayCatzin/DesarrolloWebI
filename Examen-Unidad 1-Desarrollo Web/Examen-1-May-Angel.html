@@ -76,7 +76,7 @@
 
     <p>Películas favoritas</p>
 
-    <ol>
+    <ol id="elementosPelis">
             <li>Shrek</li>
 
             <li>Un mundo feliz</li>
@@ -98,14 +98,17 @@
             //Declración de expresiones regulares
             var expR1 = new RegExp('^[A-Z]+','i');
             var expR2 = new RegExp('^[0-9]');
-            //Dom para nombre
+            //Dom para nombre por defecto
             contenidoNom = document.createTextNode('Angel Alberto May Catzin');
             parrafoNom=document.getElementById('nombrePersona');
             parrafoNom.appendChild(contenidoNom);
-            //DOM para numero de control
+            //DOM para numero de control por defecto
             contenidoNum = document.createTextNode('17390350');
             parrafoNum=document.getElementById('numeroDeControl');
             parrafoNum.appendChild(contenidoNum);
+            //Declaración del array de mis peliculas favoritas
+            var pelisFavoritas = new Array("Avengers: Infinity War: ", "Saga: Que paso ayer", "Saga: rapidos y furisos");
+            agregarMisPeliculas(pelisFavoritas);
             //Función para validar personaje
             function validarDPersonaje(){
             nombrePersonaje= document.getElementById("nombrePersonaje").value;
@@ -114,7 +117,6 @@
                 } else{
                     alert("Nombre invalido")
                 }
-                
     
                 function agregarPersonaje(){
                     var lista = document.createElement("LI");
@@ -157,6 +159,16 @@
                     parrafoNum.appendChild(contenidoNum);
                     
                 }
+            }
+            function agregarMisPeliculas(){
+                pelisFavoritas.forEach( function(valor) {
+                var listaPelis = document.createElement("LI");
+                var contenidoLiPelis = document.createTextNode(valor);
+                var elementoPelis=document.getElementById('elementosPelis');
+                listaPelis.appendChild(contenidoLiPelis)
+                elementoPelis.appendChild(listaPelis)
+                });
+                    
             }
         </script>
 </body>
