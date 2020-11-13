@@ -112,23 +112,21 @@
             <li>El club de la pelea</li>
         </ol>
     </section>
-    
         <script>
             //Declaración de variables
-            var nombre;
-            var numeroControl;
-            var nombrePersonaje;
-            var peliculaFavorita;
-            var contenidoNum;
-            var contenidoNom;
-            var parrafoNum;
-            var parrafoNom;
-            var listaPelis;
-            var contenidoLiPelis
-            var elementoPelis
-            //var elementoPelis
-            //Declración de expresiones regulares
-            var expR1 = new RegExp('^[A-Z]+','i');
+            var nombre; //Variable para almacenar el nombre de la persona
+            var numeroControl;  //Variable para almacenar el numero de control de la persona
+            var nombrePersonaje;    //Variable para almacenar el nombre del personaje
+            var peliculaFavorita; //Variable para almacenar el nombre de la pelicula
+            var contenidoNum; //Variable para almacenar el numero de control del nodo de tipo Text
+            var contenidoNom; //Variable para almacenar el nombre del nodo de tipo Text
+            var parrafoNum; //Variable para almacenar el elemento con id=numeroControl
+            var parrafoNom; //Variable para almacenar el elemento con id=nombrePersona
+            var listaPelis; //Variable para almacenar lista ordenada
+            var contenidoLiPelis //Variable para almacenar el texto del nodo tipo TEXT
+            var elementoPelis //Variable para almacenar el elemento con id= elemenentosPelis
+            //Declaración de expresiones regulares
+            var expR1 = new RegExp('^[A-Z]+\\s*[0-9]*','i');
             var expR2 = new RegExp('^[0-9]');
             //Dom para nombre por defecto
             contenidoNom = document.createTextNode('Angel Alberto May Catzin');
@@ -140,77 +138,125 @@
             parrafoNum.appendChild(contenidoNum);
             //Declaración del array de mis peliculas favoritas
             var pelisFavoritas = new Array("Avengers: Infinity War: ", "Saga: Que paso ayer", "Saga: rapidos y furisos");
+            //Llamamos a la función que mostrara la lista del arreglo 'pelisFavoritas'
             mostrarMisPeliculas();
-            //Función para validar personaje
+            //Función para validar nombre del personaje
             function validarDPersonaje(){
+            //Obtenemos y almacenamos el nombre del personaje que se ingreso
             nombrePersonaje= document.getElementById("nombrePersonaje").value;
+            //Validamos si el nombre del personaje ingresado cumple con la expresión regular correspondiente
+            //test(nombrePersonaje) Comprueba si la expresión regular (expR1) casa con el texto (nombrePersonaje) pasado por parámetro
                 if (expR1.test(nombrePersonaje)==true){
+                    //Si se cumple, llamamos a la función que agrega el nombre del personaje
                     agregarPersonaje()
                 } else{
-                    alert("Nombre invalido")
+                    //Se le emite un alert para notificar que el nombre es invalido
+                    alert("Nombre invalido. Ingrese solo letras.")
                 }
-    
+                //Función que permite agregar el nombre del personaje, usando DOM
                 function agregarPersonaje(){
+                    // Crear nodo de tipo Element. Lista ordenada
                     var lista = document.createElement("LI");
-                    lista.className='eliminar'
+                    // Crear nodo de tipo Text
                     var contenidoLi = document.createTextNode(nombrePersonaje);
+                    //Obtenemos y almacenamos el elemento con id= elementoPersonajes
                     var elemento=document.getElementById('elementoPersonajes');
+                    // Añadir el nodo Text como hijo del nodo Element
                     lista.appendChild(contenidoLi)
+                    // Añadir el nodo Element como hijo de la lista ordenada con id= elementoPersonajes
                     elemento.appendChild(lista)
                 }
-
-     
             }
-
+            //Función permite validar si el nombre de la pelicula es valido
             function validarPeli(){
+                //Obtenemos y almacenamos el nombre de la pelicula que se ingreso
                 peliculaFavorita= document.getElementById("peliFavorita").value;
+                //Validamos si el nombre de la pelicula ingresada cumple con la expresión regular correspondiente
+                //test(peliculaFavorita) Comprueba si la expresión regular (expR1) casa con el texto (peliculaFavorita) pasado por parámetro
                 if (expR1.test(peliculaFavorita)==true){
+                    //Si se cumple, llamamos a la función que agrega el nombre de la pelicula
                     agregarPeliculas();
                 } else{
-                    alert('Nombre de Pelicula invalida');
+                    //Se le emite un alert para notificar que el nombre es invalido
+                    alert('Nombre de Pelicula invalida. Ingrese solo letras');
                 }
 
             }
-            //Función para validar los datos: nombre y numero de control
-            //En caso que usted desee agregar su nombre y numero de control
-            function validarDatosP(){
-                nombre= document.getElementById("nombre").value;
-                numeroControl= document.getElementById("noControl").value;
-                if (expR1.test(nombre)==true && expR2.test(numeroControl)==true ){
-                     agregarDatosPersonales()
-                } else{
-                    alert("Datos invalidos")
-                }
-                function agregarDatosPersonales(){
-                    parrafoNom=document.getElementById('nombrePersona');
-                    parrafoNom.removeChild(parrafoNom.lastChild);
-                    contenidoNom = document.createTextNode(nombre);
-                    parrafoNom.appendChild(contenidoNom);  
-                    parrafoNum=document.getElementById('numeroDeControl');
-                    parrafoNum.removeChild(parrafoNum.lastChild);
-                    contenidoNum = document.createTextNode(numeroControl);
-                    parrafoNum.appendChild(contenidoNum);
-                    
-                }
-            }
+            //Función que permite agregar el nombre de la pelicula, usando DOM
             function agregarPeliculas(){
+                 // Crear nodo de tipo Element. Lista ordenada
                 listaPelis = document.createElement("LI");
+                // Crear nodo de tipo Text
                 contenidoLiPelis = document.createTextNode(peliculaFavorita);
+                //Obtenemos y almacenamos el elemento con id= elemenentosPelis
                 elementoPelis=document.getElementById('elementosPelis');
+                // Añadir el nodo Text como hijo del nodo Element
                 listaPelis.appendChild(contenidoLiPelis)
+                // Añadir el nodo Element como hijo de la lista ordenada con id= elementoPelis
                 elementoPelis.appendChild(listaPelis)
             }
+            //Función para validar los datos: nombre y numero de control
+            //En caso que usted desee cambiar el nombre y numero de control de la sección datos personales
+            function validarDatosP(){
+                //Obtenemos y almacenamos el nombre de la persona
+                nombre= document.getElementById("nombre").value;
+                //Obtenemos y almacenamos el numero de control de la persona
+                numeroControl= document.getElementById("noControl").value;
+                //Validamos si el nombre o numero de control ingresada cumple con la expresión regular correspondiente (expR1 y expR2)
+                //test(nombre) Comprueba si la expresión regular (expR1) casa con el texto (nombre) pasado por parámetro
+                //test(numeroControl) Comprueba si la expresión regular (expR2) casa con el texto (numeroControl) pasado por parámetro
+                if (expR1.test(nombre)==true || expR2.test(numeroControl)==true ){
+                    //Si se cumple alguna de las dos condiciones, llamamos a la función que agrega el nombre de la pelicula
+                     agregarDatosPersonales()
+                } else{
+                    //Se le emite un alert para notificar que los datos son invalidos
+                    alert("Datos invalidos")
+                }
+                //Función para agregar los datos que se ingreso (ya sea nombre o numero de control)
+                function agregarDatosPersonales(){
+                    //Comprobramos si no es igual.
+                    if(nombre!==''){
+                    //Obtenemos y almacenamos el elemento con id=nombrePersona
+                    parrafoNom=document.getElementById('nombrePersona');
+                    //Eliminamos el ultimo hijo del nodo
+                    parrafoNom.removeChild(parrafoNom.lastChild);
+                     // Crear nodo de tipo Text, agregando el nombre ingresado
+                    contenidoNom = document.createTextNode(nombre);
+                    // Añadir el nodo Text como hijo del nodo Element
+                    parrafoNom.appendChild(contenidoNom); 
+                    } else{
+                    //Obtenemos y almacenamos el elemento con id=numeroControl
+                    parrafoNum=document.getElementById('numeroDeControl');
+                    //Eliminamos el ultimo hijo del nodo
+                    parrafoNum.removeChild(parrafoNum.lastChild);
+                    // Crear nodo de tipo Text, agregando el numero de control ingresado
+                    contenidoNum = document.createTextNode(numeroControl);
+                    // Añadir el nodo Text como hijo del nodo Element
+                    parrafoNum.appendChild(contenidoNum);
+                    }
+                }
+            }
+            //Función para mostrar las peliculas del arreglo de mis peliculas favoritas
             function mostrarMisPeliculas(){
+                //Iteramos con un forEch nuestro arreglo
                 pelisFavoritas.forEach( function(valor) {
+                // Crear nodo de tipo Element. Lista ordenada
                 listaPelis = document.createElement("LI");
+                // Crear nodo de tipo Text, agregando el valor de cada iteración
                 contenidoLiPelis = document.createTextNode(valor);
+                //Obtenemos y almacenamos el elemento con id= elemenentosPelis
                 elementoPelis=document.getElementById('elementosPelis');
+                // Añadir el nodo Text como hijo del nodo Element
                 listaPelis.appendChild(contenidoLiPelis)
+                // Añadir el nodo Element como hijo de la lista ordenada con id= elementoPelis
                 elementoPelis.appendChild(listaPelis)
                 });
             }
+            //Función para eliminar una pelicula (solo logre eliminar el primero)
             function remove(){
+                //Obtenemos y almacenamos el elemento con id= error
                 var node=document.getElementById('error');
+                //Eliminamos el hijo (Shrek)
                 node.parentNode.removeChild(node);
             }
         </script>
