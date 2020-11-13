@@ -7,17 +7,8 @@
     <meta name="keys" content="formularios, DOM">
     <title>EXAMEN DOM</title>
     <style>
-        #formulario {
-            /* Centrar el formulario en la página */
-            margin: 0 auto;
-            width: 400px;
-            /* Esquema del formulario */
-            padding: 1em;
-            border: 1px solid #CCC;
-            border-radius: 1em;
-        }
-
         ul {
+            font-weight: bold;
             list-style: none;
             padding: 0;
             margin: 0;
@@ -25,32 +16,64 @@
 
         form li + li {
             margin-top: 1em;
+            align-items: center;
         }
         body{
             margin: 0 auto;
-            width: 400px;
         }
+        .parrafosT {
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            margin: 0 auto;
+            width: 300px;
+            padding: .5em;
+            border: 1px solid cornsilk;
+            border-radius: 1em;
+            background-color: rgb(108, 189, 192);
+        }
+        .contenedor {
+            font-weight: bold;
+            margin: 0 auto;
+            width: 350px;
+            padding: 1em;
+            border: 1px solid cornsilk;
+            background-color: rgb(122, 213, 216);
+            border-radius: 1em;
+        }
+
     </style>
     
 </head>
-<body>
-    <form id="formulario">
+<body>    
+    <form class="contenedor">
+        <div class="parrafosT">
+            <p>Usando DOM y formularios</p>
+        </div>
+        <br>
         <ul>
             <li>
+                <div style="background: cornsilk; text-align: center; border-radius: 2pt;">Agregar Personaje Favorito</div>
+                <br>
                 <label>Personaje favorito:</label>
                 <input type="text" id="nombrePersonaje" name="nomPerFavorito">
-             </li>
-             <li id="button">
+            </li>
+            <li id="button">
                 <button type="button" onclick="validarDPersonaje();">Agregar Personaje</button>
-              </li>  
-              <li>
+            </li>  
+            <li>
+                <div style="background: cornsilk; text-align: center; border-radius: 2pt;">Agregar Pelicula Favorita</div>
+                <br>
                 <label>Pelicula Favorita:</label>
                 <input type="text" id="peliFavorita" name="peliculaFavorita">
-             </li>
-             <li id="button">
-                <button type="button" onclick="validarPeli();">Agregar Pelicula</button>
-              </li>  
-             <li>
+            </li>
+            <li id="button">
+                <button type="button" onclick="validarPeli();">Agregar</button>
+            </li>
+            <br>
+            <div style="background: cornsilk; text-align: center; border-radius: 2pt;">Cambiar Datos Personales</div>
+            <br>
+            <li>
                <label>Nombre:</label>
                <input type="text" id="nombre" name="nombre">
             </li>
@@ -59,32 +82,37 @@
                 <input type="text" id="noControl" name="numeroControl">
             </li>
             <li id="button">
-                <button type="button" onclick="validarDatosP();">Agregar nombre y control</button>
-              </li>  
+                <button type="button" onclick="validarDatosP();">Cambiar</button>
+            </li>  
         </ul>
     </form>
-    <p>Usando DOM y formularios</p>
+    <section class="contenedor">
+        <div class="parrafosT">
+            <p>Datos Personales</p>
+        </div>
+        <p id="nombrePersona">Nombre: </p>
 
-    <p id="nombrePersona">Nombre: </p>
-
-    <p id="numeroDeControl">Número de control: </p>
-
-    <p>Personajes favoritos: </p>
-    <ol id="elementoPersonajes">
-
-    </ol>
-
-    <p>Películas favoritas</p>
-
-    <ol id="elementosPelis">
-            <li>Shrek</li>
-
+        <p id="numeroDeControl">Número de control: </p>
+    </section>
+    <section class="contenedor">
+        <div class="parrafosT">
+            <p>Personajes favoritos: </p>
+        </div>
+        <ol id="elementoPersonajes">
+        </ol>
+    </section>
+    <section class="contenedor">
+        <div class="parrafosT">
+            <p>Películas favoritas</p>
+        </div>
+        <ol id="elementosPelis">
+            <li id="error" onclick="remove()" >Shrek</li>
             <li>Un mundo feliz</li>
-
             <li>La vida inútil de Pito Pérez</li>
-
             <li>El club de la pelea</li>
         </ol>
+    </section>
+    
         <script>
             //Declaración de variables
             var nombre;
@@ -95,6 +123,10 @@
             var contenidoNom;
             var parrafoNum;
             var parrafoNom;
+            var listaPelis;
+            var contenidoLiPelis
+            var elementoPelis
+            //var elementoPelis
             //Declración de expresiones regulares
             var expR1 = new RegExp('^[A-Z]+','i');
             var expR2 = new RegExp('^[0-9]');
@@ -108,7 +140,7 @@
             parrafoNum.appendChild(contenidoNum);
             //Declaración del array de mis peliculas favoritas
             var pelisFavoritas = new Array("Avengers: Infinity War: ", "Saga: Que paso ayer", "Saga: rapidos y furisos");
-            agregarMisPeliculas(pelisFavoritas);
+            mostrarMisPeliculas();
             //Función para validar personaje
             function validarDPersonaje(){
             nombrePersonaje= document.getElementById("nombrePersonaje").value;
@@ -120,6 +152,7 @@
     
                 function agregarPersonaje(){
                     var lista = document.createElement("LI");
+                    lista.className='eliminar'
                     var contenidoLi = document.createTextNode(nombrePersonaje);
                     var elemento=document.getElementById('elementoPersonajes');
                     lista.appendChild(contenidoLi)
@@ -132,7 +165,7 @@
             function validarPeli(){
                 peliculaFavorita= document.getElementById("peliFavorita").value;
                 if (expR1.test(peliculaFavorita)==true){
-                    //agregarPelicula();
+                    agregarPeliculas();
                 } else{
                     alert('Nombre de Pelicula invalida');
                 }
@@ -160,15 +193,25 @@
                     
                 }
             }
-            function agregarMisPeliculas(){
+            function agregarPeliculas(){
+                listaPelis = document.createElement("LI");
+                contenidoLiPelis = document.createTextNode(peliculaFavorita);
+                elementoPelis=document.getElementById('elementosPelis');
+                listaPelis.appendChild(contenidoLiPelis)
+                elementoPelis.appendChild(listaPelis)
+            }
+            function mostrarMisPeliculas(){
                 pelisFavoritas.forEach( function(valor) {
-                var listaPelis = document.createElement("LI");
-                var contenidoLiPelis = document.createTextNode(valor);
-                var elementoPelis=document.getElementById('elementosPelis');
+                listaPelis = document.createElement("LI");
+                contenidoLiPelis = document.createTextNode(valor);
+                elementoPelis=document.getElementById('elementosPelis');
                 listaPelis.appendChild(contenidoLiPelis)
                 elementoPelis.appendChild(listaPelis)
                 });
-                    
+            }
+            function remove(){
+                var node=document.getElementById('error');
+                node.parentNode.removeChild(node);
             }
         </script>
 </body>
