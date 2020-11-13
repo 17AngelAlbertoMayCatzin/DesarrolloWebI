@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+    <meta name="Viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Angel alberto May Catzin">
+    <meta name="keys" content="formularios, DOM">
+    <title>EXAMEN DOM</title>
+    <style>
+        #formulario {
+            /* Centrar el formulario en la página */
+            margin: 0 auto;
+            width: 400px;
+            /* Esquema del formulario */
+            padding: 1em;
+            border: 1px solid #CCC;
+            border-radius: 1em;
+            }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            }
+
+        form li + li {
+            margin-top: 1em;
+            }
+        section{
+            margin: 0 auto;
+            width: 400px;
+            padding: 5em;
+            border: 1px solid #CCC;
+            border-radius: 6em;
+        }
+    </style>
+    
+</head>
+<body>
+    <form id="formulario">
+        <ul>
+             <li>
+               <label>Nombre:</label>
+               <input type="text" id="nombre" name="nombre">
+            </li>
+            <li>
+                <label>Número de control:</label>
+                <input type="text" id="noControl" name="numeroControl">
+            </li>
+            <li>
+                <label>Personaje favorito:</label>
+                <input type="text" id="nombrePersonaje" name="nomPerFavorito">
+             </li>
+             <li>
+                <label>Pelicula Favorita:</label>
+                <input type="text" id="peliFavorita" name="peliculaFavorita">
+             </li>
+             <li id="button">
+                <button type="button" onclick="validarDatos();">Enviar datos</button>
+              </li>              
+        </ul>
+    </form>
+    <p>Usando DOM y formularios</p>
+
+    <p id="nombrePersonal">Nombre: </p>
+
+    <p>Número de control: </p>
+
+    <p>Personajes favoritos</p>
+
+    <p>Películas favoritas</p>
+
+    <ol>
+            <li>Shrek</li>
+
+            <li>Un mundo feliz</li>
+
+            <li>La vida inútil de Pito Pérez</li>
+
+            <li>El club de la pelea</li>
+        </ol>
+        <script>
+            var nombre;
+            var numeroControl;
+            var nombrePersonaje;
+            var peliculaFavorita;
+            expR1 = new RegExp('^[A-Z]+','i');
+            var expR2 = new RegExp('^[0-9]$');
+    
+            function validarDatos(){
+            nombre= document.getElementById("nombre").value;
+            numeroControl= document.getElementById("noControl").value;
+            nombrePersonaje= document.getElementById("nombrePersonaje").value;
+            peliculaFavorita= document.getElementById("peliFavorita").value;
+            var m =  expR2.test(numeroControl)
+            alert(m)
+                if (expR1.test(nombre)==true){
+                // Crear nodo de tipo Element
+                var parrafo = document.createElement("p");
+                // Crear nodo de tipo Text
+                var contenido = document.createTextNode("Hola Mundo!");
+                // Añadir el nodo Text como hijo del nodo Element
+                parrafo.appendChild(contenido);
+                // Añadir el nodo Element como hijo de la pagina
+                document.body.appendChild(parrafo);
+                } else{
+                
+                }
+                if (expR2.test(numeroControl)==true){
+    
+                } else{
+    
+                }
+                if (expR1.test(nombrePersonaje)==true){
+    
+                } else{
+    
+                }
+                if (expR1.test(peliculaFavorita)==true){
+    
+                } else{
+    
+                }
+    
+    
+     
+            }
+        </script>
+</body>
+</html>
