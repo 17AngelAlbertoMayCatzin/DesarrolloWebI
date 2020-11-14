@@ -59,7 +59,7 @@
                 <input type="text" id="nombrePersonaje" name="nomPerFavorito">
             </li>
             <li id="button">
-                <button type="button" onclick="validarDPersonaje();">Agregar Personaje</button>
+                <input type="button" value="Agregar" onclick="validarDPersonaje();">
             </li>  
             <li>
                 <div style="background: cornsilk; text-align: center; border-radius: 2pt;">Agregar Pelicula Favorita</div>
@@ -68,21 +68,21 @@
                 <input type="text" id="peliFavorita" name="peliculaFavorita">
             </li>
             <li id="button">
-                <button type="button" onclick="validarPeli();">Agregar</button>
+                <input type="button" value="Agregar" onclick="validarPeli();">
             </li>
             <br>
             <div style="background: cornsilk; text-align: center; border-radius: 2pt;">Cambiar Datos Personales</div>
             <br>
             <li>
-               <label>Nombre:</label>
+               <label>Ingresa tu nombre:</label>
                <input type="text" id="nombre" name="nombre">
             </li>
             <li>
-                <label>Número de control:</label>
+                <label>Escribe tu no.control:</label>
                 <input type="text" id="noControl" name="numeroControl">
             </li>
             <li id="button">
-                <button type="button" onclick="validarDatosP();">Cambiar</button>
+                <input type="button" value="Cambiar" onclick="validarDatosP();">
             </li>  
         </ul>
     </form>
@@ -91,7 +91,6 @@
             <p>Datos Personales</p>
         </div>
         <p id="nombrePersona">Nombre: </p>
-
         <p id="numeroDeControl">Número de control: </p>
     </section>
     <section class="contenedor">
@@ -105,8 +104,14 @@
         <div class="parrafosT">
             <p>Películas favoritas</p>
         </div>
+        <br>
+        <div>
+        <label>Número de pelicula a eliminar</label>
+        <input type="text" id="idPelicula" name="numeroDePelicula">
+        <button type="button" onclick="remove();">Borrar</button>
+        </div>
         <ol id="elementosPelis">
-            <li id="error" onclick="remove()" >Shrek</li>
+            <li>Shrek</li>
             <li>Un mundo feliz</li>
             <li>La vida inútil de Pito Pérez</li>
             <li>El club de la pelea</li>
@@ -136,8 +141,12 @@
             contenidoNum = document.createTextNode('17390350');
             parrafoNum=document.getElementById('numeroDeControl');
             parrafoNum.appendChild(contenidoNum);
+            //Declaración del array de mis personajes favoritos.
+            var personFavoritos = new Array("Bruce Banner ", "Iron Man", "Batman", "Groot", "Capital America");
+            //Llamamos a la función que mostrara la lista del arreglo 'personFavoritos', usando DOM en la función
+            mostrarMisPersonajes();
             //Declaración del array de mis peliculas favoritas
-            var pelisFavoritas = new Array("Avengers: Infinity War: ", "Saga: Que paso ayer", "Saga: rapidos y furisos");
+            var pelisFavoritas = new Array("Avengers: Infinity War ", "Saga: Que paso ayer", "Saga: rapidos y furisos");
             //Llamamos a la función que mostrara la lista del arreglo 'pelisFavoritas'
             mostrarMisPeliculas();
             //Función para validar nombre del personaje
@@ -189,7 +198,7 @@
                 // Crear nodo de tipo Text
                 contenidoLiPelis = document.createTextNode(peliculaFavorita);
                 //Obtenemos y almacenamos el elemento con id= elemenentosPelis
-                elementoPelis=document.getElementById('elementosPelis');
+                elementoPelis=document.getElementById('elementoPersonajes');
                 // Añadir el nodo Text como hijo del nodo Element
                 listaPelis.appendChild(contenidoLiPelis)
                 // Añadir el nodo Element como hijo de la lista ordenada con id= elementoPelis
@@ -205,7 +214,7 @@
                 //Validamos si el nombre o numero de control ingresada cumple con la expresión regular correspondiente (expR1 y expR2)
                 //test(nombre) Comprueba si la expresión regular (expR1) casa con el texto (nombre) pasado por parámetro
                 //test(numeroControl) Comprueba si la expresión regular (expR2) casa con el texto (numeroControl) pasado por parámetro
-                if (expR1.test(nombre)==true || expR2.test(numeroControl)==true ){
+                if (expR1.test(nombre)==true && expR2.test(numeroControl)==true ){
                     //Si se cumple alguna de las dos condiciones, llamamos a la función que agrega el nombre de la pelicula
                      agregarDatosPersonales()
                 } else{
@@ -214,8 +223,6 @@
                 }
                 //Función para agregar los datos que se ingreso (ya sea nombre o numero de control)
                 function agregarDatosPersonales(){
-                    //Comprobramos si no es igual.
-                    if(nombre!==''){
                     //Obtenemos y almacenamos el elemento con id=nombrePersona
                     parrafoNom=document.getElementById('nombrePersona');
                     //Eliminamos el ultimo hijo del nodo
@@ -224,7 +231,6 @@
                     contenidoNom = document.createTextNode(nombre);
                     // Añadir el nodo Text como hijo del nodo Element
                     parrafoNom.appendChild(contenidoNom); 
-                    } else{
                     //Obtenemos y almacenamos el elemento con id=numeroControl
                     parrafoNum=document.getElementById('numeroDeControl');
                     //Eliminamos el ultimo hijo del nodo
@@ -232,8 +238,7 @@
                     // Crear nodo de tipo Text, agregando el numero de control ingresado
                     contenidoNum = document.createTextNode(numeroControl);
                     // Añadir el nodo Text como hijo del nodo Element
-                    parrafoNum.appendChild(contenidoNum);
-                    }
+                    parrafoNum.appendChild(contenidoNum); 
                 }
             }
             //Función para mostrar las peliculas del arreglo de mis peliculas favoritas
@@ -250,15 +255,38 @@
                 listaPelis.appendChild(contenidoLiPelis)
                 // Añadir el nodo Element como hijo de la lista ordenada con id= elementoPelis
                 elementoPelis.appendChild(listaPelis)
+                
+                });
+
+            }
+            //Función para mostrar las peliculas del arreglo de mis peliculas favoritas
+            function mostrarMisPersonajes(){
+                //Iteramos con un forEch nuestro arreglo
+                personFavoritos.forEach( function(valor) {
+                // Crear nodo de tipo Element. Lista ordenada
+                var listaPersF = document.createElement("LI");
+                // Crear nodo de tipo Text, agregando el valor de cada iteración
+                var contenidoLiPersF = document.createTextNode(valor);
+                //Obtenemos y almacenamos el elemento con id= elemenentosPelis
+                elementoPersF=document.getElementById('elementoPersonajes');
+                // Añadir el nodo Text como hijo del nodo Element
+                listaPersF.appendChild(contenidoLiPersF)
+                // Añadir el nodo Element como hijo de la lista ordenada con id= elementoPelis
+                elementoPersF.appendChild(listaPersF)
+                
                 });
             }
-            //Función para eliminar una pelicula (solo logre eliminar el primero)
+            //Función para eliminar una pelicula
             function remove(){
-                //Obtenemos y almacenamos el elemento con id= error
-                var node=document.getElementById('error');
-                //Eliminamos el hijo (Shrek)
-                node.parentNode.removeChild(node);
+                //Obtenemos y guardamos el valor (numero) de pelicula que se desea eliminar
+                var id = document.getElementById("idPelicula").value;
+                id -= 1;
+                //Obtenemos de nuestra lista ordenada "elementosPelis", el elemento lista con el numero (id) de pelicula a eliminar
+                var pelicula = document.getElementById("elementosPelis").getElementsByTagName("li")[id];
+                //Eliminamos la pelicula
+                pelicula.parentNode.removeChild(pelicula); 
             }
+
         </script>
 </body>
 </html>
