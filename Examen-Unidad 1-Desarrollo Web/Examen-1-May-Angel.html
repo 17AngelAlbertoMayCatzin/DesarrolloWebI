@@ -288,9 +288,13 @@
                 var id = document.getElementById("idPelicula").value;
                 id -= 1;
                 //Obtenemos de nuestra lista ordenada "elementosPelis", el elemento lista con el numero (id) de pelicula a eliminar
-                var pelicula = document.getElementById("elementosPelis").getElementsByTagName("li")[id];
-                //Eliminamos la pelicula
-                pelicula.parentNode.removeChild(pelicula); 
+                var pelicula = document.getElementById("elementosPelis").getElementsByTagName("li")[id];          
+                try {
+                    //Eliminamos la pelicula
+                    pelicula.parentNode.removeChild(pelicula); 
+                } catch (error) {
+                    alert('UPS! Pelicula no encontrada. Ingrese una de la lista.')
+                }
             }
         </script>
 </body>
